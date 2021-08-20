@@ -49,8 +49,8 @@ export default function SearchBar({
           selectedValue={selectedCategory}
           onValueChange={onSelected}
         >
-          <Picker.Item label="Anime" value="anime" />
-          <Picker.Item label="Manga" value="manga" />
+          <Picker.Item label="Title" value="title" />
+          <Picker.Item label="Author" value="author" />
         </Picker>
       </View>
     </View>
