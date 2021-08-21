@@ -1,12 +1,20 @@
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
+import OneBook from './OneBook';
 const styles = StyleSheet.create({
   myImage: {
     width: 150,
     height: 150,
   },
+  titles: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   authors: {
     fontWeight: 'bold',
+  },
+  id: {
+    position: 'relative',
   },
 });
 export const AnimeList = ({ result }) => {
@@ -15,17 +23,8 @@ export const AnimeList = ({ result }) => {
     <>
       <View>
         <FlatList
-          renderItem={({ item }) => (
-            <>
-              <Text>{item.volumeInfo.title}</Text>
-              <Text>{item.id}</Text>
-              <Text>--{item.volumeInfo.authors.join(' && ')}</Text>
-              <Image
-                style={styles.myImage}
-                source={item.volumeInfo.imageLinks.smallThumbnail}
-              />
-            </>
-          )}
+          keyExtractor={(result) => result.id}
+          renderItem={({ item }) => <OneBook item={item} />}
           data={result}
         />
       </View>

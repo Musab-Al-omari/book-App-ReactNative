@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   Picker: {
     flex: 3,
-    backgroundColor: 'rgb(100, 59, 59)',
+    backgroundColor: '#DDDDDD',
   },
 });
 

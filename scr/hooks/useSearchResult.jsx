@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Book from '../api/Bookapi';
 import { Text, Alert } from 'react-native';
 export default () => {
@@ -39,6 +39,20 @@ export default () => {
       );
   };
 
+  useEffect(() => {
+    Book.get(`volumes`, {
+      params: {
+        q: `gone with the wind+title`,
+      },
+    })
+      .then((data) => {
+        setResultArray(data.data.items);
+        console.log(data.data.items);
+      })
+      .catch(
+        createTwoButtonAlert('try other terms ', "we didn't find any thing  ")
+      );
+  }, []);
   return [
     selectedCategory,
     setSelectedCategory,
