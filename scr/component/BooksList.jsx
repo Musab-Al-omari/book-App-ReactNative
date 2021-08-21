@@ -5,6 +5,9 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
+  authors: {
+    fontWeight: 'bold',
+  },
 });
 export const AnimeList = ({ result }) => {
   console.log('result', result);
@@ -14,8 +17,13 @@ export const AnimeList = ({ result }) => {
         <FlatList
           renderItem={({ item }) => (
             <>
-              <Text>hello</Text>
-              <Image style={styles.myImage} source={item.image_url} />
+              <Text>{item.volumeInfo.title}</Text>
+              <Text>{item.id}</Text>
+              <Text>--{item.volumeInfo.authors.join(' && ')}</Text>
+              <Image
+                style={styles.myImage}
+                source={item.volumeInfo.imageLinks.smallThumbnail}
+              />
             </>
           )}
           data={result}
