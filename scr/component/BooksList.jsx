@@ -1,7 +1,16 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
+import { navigate } from '../../App';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import OneBook from './OneBook';
 const styles = StyleSheet.create({
+  container: {},
   myImage: {
     width: 150,
     height: 150,
@@ -17,18 +26,24 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
 });
-export const AnimeList = ({ result }) => {
-  console.log('result', result);
+const BookList = ({ result }) => {
   return (
     <>
-      <View>
+      <View style={styles.container}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           keyExtractor={(result) => result.id}
-          renderItem={({ item }) => <OneBook item={item} />}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity onPress={() => navigate('Item Screen')}>
+                <OneBook item={item} />
+              </TouchableOpacity>
+            );
+          }}
           data={result}
         />
       </View>
     </>
   );
 };
-export default AnimeList;
+export default BookList;

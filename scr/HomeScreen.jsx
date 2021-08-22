@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Text, Alert } from 'react-native';
+import { Text, Alert, ScrollView, View, StyleSheet } from 'react-native';
 import SearchBar from './component/SearchBar';
 import BooksList from './component/BooksList';
 import useSearchResult from './hooks/useSearchResult';
+
 
 export default function HomeScreen() {
   const [
@@ -12,18 +13,29 @@ export default function HomeScreen() {
     setTerm,
     resultArray,
   ] = useSearchResult();
+
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: '#F8C997',
+    },
+  });
+
   return (
     <>
-      <SearchBar
-        selectedCategory={selectedCategory}
-        onSelected={(itemValue) => setSelectedCategory(itemValue)}
-        onSubmit={onSubmit}
-        onChange={(newTerm) => setTerm(newTerm)}
-      />
-      {resultArray && resultArray.length > 1 ? (
+      <View style={styles.container}>
+        <SearchBar
+          selectedCategory={selectedCategory}
+          onSelected={(itemValue) => setSelectedCategory(itemValue)}
+          onSubmit={onSubmit}
+          onChange={(newTerm) => setTerm(newTerm)}
+        />
+        {/* {resultArray && resultArray.length > 1 ? (
         <Text>there are item: {resultArray.length} </Text>
-      ) : null}
-      <BooksList result={resultArray} />
+      ) : null} */}
+        <ScrollView>
+          <BooksList result={resultArray} />
+        </ScrollView>
+      </View>
     </>
   );
 }

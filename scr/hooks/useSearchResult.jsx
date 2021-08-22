@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Book from '../api/Bookapi';
+import dataBase from '../api/dataBase';
 import { Text, Alert } from 'react-native';
 export default () => {
   const [term, setTerm] = useState('');
@@ -23,7 +24,6 @@ export default () => {
         'pls insert data',
         "you didn't insert any thing in the search bar "
       );
-      return;
     }
     Book.get(`volumes`, {
       params: {
@@ -34,7 +34,7 @@ export default () => {
         setResultArray(data.data.items);
         console.log(data.data.items);
       })
-      .catch(
+      .catch((err) =>
         createTwoButtonAlert('try other terms ', "we didn't find any thing  ")
       );
   };
@@ -49,9 +49,12 @@ export default () => {
         setResultArray(data.data.items);
         console.log(data.data.items);
       })
-      .catch(
+      .catch((err) =>
         createTwoButtonAlert('try other terms ', "we didn't find any thing  ")
       );
+    // dataBase.get('/bookApp').then((data) => {
+    //   console.log(data.data);
+    // });
   }, []);
   return [
     selectedCategory,
