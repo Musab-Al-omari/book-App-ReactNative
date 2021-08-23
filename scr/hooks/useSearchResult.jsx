@@ -42,7 +42,7 @@ export default () => {
   useEffect(() => {
     Book.get(`volumes`, {
       params: {
-        q: `gone with the wind+title`,
+        q: `gone+title`,
       },
     })
       .then((data) => {

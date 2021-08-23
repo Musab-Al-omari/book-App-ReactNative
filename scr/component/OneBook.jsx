@@ -1,44 +1,42 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 const styles = StyleSheet.create({
+  mainContainer: {
+    opacity: '80%',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderRadius: 20,
+    backgroundColor: '#ABD1C9FF',
+    margin: 15,
+  },
+  subContainer: {
+    flex: 1,
+  },
   myImage: {
+    borderRadius: 20,
     width: 150,
     height: 150,
   },
-  ImageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   titles: {
-    marginHorizontal: 15,
-    flex: 4,
-    fontSize: 18,
+    marginVertical: 15,
+    marginHorizontal: 10,
+    fontSize: 20,
     fontWeight: 'bold',
   },
-  authors: {
-    textAlign: 'center',
-    fontSize: 13,
-    fontWeight: 'normal',
-    marginBottom: 5,
+  naming: { fontWeight: 'bold', marginLeft: 8, marginVertical: 5 },
+  description: {
+    fontSize: 15,
   },
-  id: {
-    marginHorizontal: 15,
-    flex: 1,
-    position: 'relative',
-  },
-  titleBar: {
-    flexDirection: 'row',
-  },
-  button: {
-    borderRadius: 20,
-    marginHorizontal: 10,
-    padding: 15,
-    backgroundColor: '#F0DA9F',
-  },
-  buttonContainer: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
+  // button: {
+  //   borderRadius: 20,
+  //   marginHorizontal: 10,
+  //   padding: 15,
+  //   backgroundColor: '#F0DA9F',
+  // },
+  // buttonContainer: {
+  //   justifyContent: 'space-between',
+  //   flexDirection: 'row',
+  // },
 });
 export default function OneBook({ item, navigate }) {
   function onPress() {
@@ -46,37 +44,61 @@ export default function OneBook({ item, navigate }) {
   }
   return (
     <>
-      <View style={styles.titleBar}>
-        <Text style={styles.titles}>{item.volumeInfo.title}</Text>
-        <Text style={styles.id}>BookID:{item.id}</Text>
+      <View style={styles.mainContainer}>
+        <View style={styles.ImageContainer}>
+          <Image
+            style={styles.myImage}
+            source={{
+              uri: item.volumeInfo.imageLinks
+                ? item.volumeInfo.imageLinks.smallThumbnail
+                : 'https://www.generalcatalyst.com/wp-content/uploads/2017/10/featured-img-78-150x150.png',
+            }}
+          />
+        </View>
+
+        <View style={styles.subContainer}>
+          <Text numberOfLines={1} style={styles.titles}>
+            {item.volumeInfo.title}
+          </Text>
+          <Text numberOfLines={1} style={{ marginVertical: 5 }}>
+            <Text style={styles.naming}>BookID:</Text>
+            <Text style={styles.description}>{item.id}</Text>
+          </Text>
+
+          {item.volumeInfo.authors ? (
+            <Text numberOfLines={1}>
+              <Text style={styles.naming}>The Author:</Text>
+              <Text style={styles.description}>
+                {item.volumeInfo.authors.join(' && ')}
+              </Text>
+            </Text>
+          ) : (
+            <Text>
+              <Text style={styles.naming}>The Author:</Text>
+              <Text numberOfLines={1} style={styles.description}>
+                unknown
+              </Text>
+            </Text>
+          )}
+
+          {item.volumeInfo.averageRating ? (
+            <Text style={(styles.naming, { marginVertical: 5 })}>
+              Rating: {item.volumeInfo.averageRating}
+            </Text>
+          ) : (
+            <Text style={styles.naming}>Rating: no Rating</Text>
+          )}
+        </View>
       </View>
 
-      {item.volumeInfo.authors ? (
-        <Text style={styles.authors}>
-          The author: {item.volumeInfo.authors.join(' && ')}
-        </Text>
-      ) : (
-        <Text style={styles.authors}>The author: unknown</Text>
-      )}
-      <View style={styles.ImageContainer}>
-        <Image
-          style={styles.myImage}
-          source={{
-            uri: item.volumeInfo.imageLinks
-              ? item.volumeInfo.imageLinks.smallThumbnail
-              : 'https://www.generalcatalyst.com/wp-content/uploads/2017/10/featured-img-78-150x150.png',
-          }}
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text>Details</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text>Save</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </>
   );
 }

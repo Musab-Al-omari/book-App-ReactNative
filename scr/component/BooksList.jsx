@@ -10,20 +10,8 @@ import {
 } from 'react-native';
 import OneBook from './OneBook';
 const styles = StyleSheet.create({
-  container: {},
-  myImage: {
-    width: 150,
-    height: 150,
-  },
-  titles: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  authors: {
-    fontWeight: 'bold',
-  },
-  id: {
-    position: 'relative',
+  container: {
+    borderWidth: 2,
   },
 });
 const BookList = ({ result }) => {
@@ -35,7 +23,9 @@ const BookList = ({ result }) => {
           keyExtractor={(result) => result.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => navigate('Item Screen')}>
+              <TouchableOpacity
+                onPress={() => navigate('Item Screen', { item })}
+              >
                 <OneBook item={item} />
               </TouchableOpacity>
             );

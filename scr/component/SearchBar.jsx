@@ -4,8 +4,9 @@ import { Picker } from '@react-native-picker/picker';
 import { Feather } from '@expo/vector-icons';
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     marginBottom: 7,
-    backgroundColor: '#F8F297',
+    backgroundColor: '#DFDCE5FF',
     height: 35,
     borderRadius: 5,
     marginHorizontal: 15,
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
   },
   Picker: {
     flex: 3,
-    backgroundColor: '#D9CB84',
+    backgroundColor: '#DFDCE5FF',
   },
 });
 

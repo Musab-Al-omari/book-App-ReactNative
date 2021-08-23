@@ -4,7 +4,6 @@ import SearchBar from './component/SearchBar';
 import BooksList from './component/BooksList';
 import useSearchResult from './hooks/useSearchResult';
 
-
 export default function HomeScreen() {
   const [
     selectedCategory,
@@ -16,7 +15,7 @@ export default function HomeScreen() {
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#F8C997',
+      backgroundColor: '#97B3D0FF',
     },
   });
 
