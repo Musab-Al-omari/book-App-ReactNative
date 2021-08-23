@@ -21,7 +21,7 @@ function App() {
 
 
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer  ref={navigationRef}>
       <myStack.Navigator>
         <myStack.Screen name='Home Screen' component={HomeScreen} />
         <myStack.Screen name='Item Screen' component={ItemScreen} />

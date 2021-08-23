@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 const styles = StyleSheet.create({
   mainContainer: {
-    opacity: '80%',
     flexDirection: 'row',
     borderWidth: 1,
     borderRadius: 20,
@@ -27,16 +26,6 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 15,
   },
-  // button: {
-  //   borderRadius: 20,
-  //   marginHorizontal: 10,
-  //   padding: 15,
-  //   backgroundColor: '#F0DA9F',
-  // },
-  // buttonContainer: {
-  //   justifyContent: 'space-between',
-  //   flexDirection: 'row',
-  // },
 });
 export default function OneBook({ item, navigate }) {
   function onPress() {
@@ -90,15 +79,6 @@ export default function OneBook({ item, navigate }) {
           )}
         </View>
       </View>
-
-      {/* <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text>Details</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text>Save</Text>
-        </TouchableOpacity>
-      </View> */}
     </>
   );
 }
