@@ -15,6 +15,7 @@ export default function HomeScreen() {
 
   const styles = StyleSheet.create({
     container: {
+      flex: 1,
       backgroundColor: '#97B3D0FF',
     },
   });
@@ -31,7 +32,7 @@ export default function HomeScreen() {
         {/* {resultArray && resultArray.length > 1 ? (
         <Text>there are item: {resultArray.length} </Text>
       ) : null} */}
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <BooksList result={resultArray} />
         </ScrollView>
       </View>

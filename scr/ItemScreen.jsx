@@ -5,53 +5,67 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  Linking,
   TouchableOpacity,
 } from 'react-native';
 import Details from './component/Details';
-
+import Bottom from './component/Bottom';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#97B3D0FF',
     flex: 1,
-    paddingTop: 20,
+  },
+
+  ImageContainer: {
+    marginVertical: 15,
+    alignItems: 'center',
+  },
+  myImage: {
+    borderWidth: 2,
+    borderColor: '#DFDCE5FF',
+    borderRadius: 20,
+    width: 250,
+    height: 250,
+  },
+  titles: {
+    marginVertical: 15,
+    marginHorizontal: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  naming: { fontWeight: 'bold', marginHorizontal: 20, marginVertical: 5 },
+  description: {
+    fontSize: 15,
+  },
+  spacing: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+  },
+  bottomView: {
+    backgroundColor: '#ABD1C9FF',
+    flexDirection: 'row',
+    width: '100%',
+    height: 50,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0,
   },
   button: {
     borderRadius: 20,
     marginHorizontal: 10,
     padding: 15,
+    width: 80,
     backgroundColor: '#F0DA9F',
   },
-  buttonContainer: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
-  ImageContainer: {
-    alignItems: 'center',
-  },
-  myImage: {
-    borderRadius: 20,
-    width: 250,
-    height: 250,
-  },
-
-  bottomView: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#FF9800',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 0,
-  },
-
   textStyle: {
-    color: '#fff',
-    fontSize: 22,
+    textAlign: 'center',
   },
 });
 
 export default function ItemScreen({ route }) {
   let item = route.params.item;
+  console.log(item.saleInfo.buyLink);
 
   function onPress() {
     return;
@@ -59,7 +73,7 @@ export default function ItemScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView style={{ marginBottom: 50 }}>
         <View style={styles.ImageContainer}>
           <Image
             style={styles.myImage}
@@ -72,16 +86,17 @@ export default function ItemScreen({ route }) {
         </View>
 
         {/* ///////////////////// */}
-        <Text>{item.volumeInfo.title} </Text>
+        <Text style={styles.titles}>{item.volumeInfo.title} </Text>
         {/* ///////////////////// */}
-        <Text numberOfLines={1} style={{ marginVertical: 5 }}>
+
+        <Text numberOfLines={1} style={styles.spacing}>
           <Text style={styles.naming}>BookID:</Text>
           <Text style={styles.description}>{item.id}</Text>
         </Text>
 
         {/* ///////////////////// */}
         {item.volumeInfo.authors ? (
-          <Text numberOfLines={3}>
+          <Text numberOfLines={3} style={styles.spacing}>
             <Text style={styles.naming}>The Author:</Text>
             <Text style={styles.description}>
               {item.volumeInfo.authors.join(' && ')}
@@ -89,7 +104,9 @@ export default function ItemScreen({ route }) {
           </Text>
         ) : (
           <Text>
-            <Text style={styles.naming}>The Author:</Text>
+            <Text style={styles.naming} style={styles.spacing}>
+              The Author:
+            </Text>
             <Text numberOfLines={3} style={styles.description}>
               unknown
             </Text>
@@ -107,37 +124,13 @@ export default function ItemScreen({ route }) {
           data={item.volumeInfo.averageRating}
         />
         <Details dataName="ratingsCount" data={item.volumeInfo.ratingsCount} />
-        <Text style={{ marginBottom: 50 }}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore
-          dolorem cupiditate, asperiores veniam modi nulla expedita odio sed
-          quas debitis nesciunt, minima vel, labore fugiat optio veritatis
-          exercitationem? Voluptates, laudantium. Lorem ipsum dolor sit, amet
-          consectetur adipisicing elit. Magni quam odio reprehenderit cumque!
-          Facere magnam sapiente, nam laboriosam nesciunt molestiae aliquid
-          dolorum, consectetur minus aliquam ab aperiam vitae, maxime
-          doloremque. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          Perspiciatis impedit modi quia quos dignissimos mollitia autem
-          architecto? Inventore, error! Sed soluta nesciunt dicta officia, ut
-          ducimus. Accusamus voluptatem quo illo! mosab
-        </Text>
       </ScrollView>
       {/* ///////////////////// */}
-
       <View style={styles.bottomView}>
-        <Text style={styles.textStyle}>This is Bottom View.</Text>
+        <Bottom text="Buy" link={item.saleInfo.buyLink} />
+        <Bottom text="Save" link={''} />
+        <Bottom text="Preview" link={item.volumeInfo.previewLink} />
       </View>
-
-      {/* <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text>Buy</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text>Preview</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text>Save</Text>
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 }

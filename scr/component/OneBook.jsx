@@ -5,26 +5,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderWidth: 1,
     borderRadius: 20,
+    borderColor: '#DFDCE5FF',
     backgroundColor: '#ABD1C9FF',
     margin: 15,
   },
   subContainer: {
+    marginHorizontal: 5,
     flex: 1,
   },
   myImage: {
+    borderColor: '#DFDCE5FF',
+    borderWidth: 1,
     borderRadius: 20,
     width: 150,
     height: 150,
   },
   titles: {
     marginVertical: 15,
-    marginHorizontal: 10,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
   },
-  naming: { fontWeight: 'bold', marginLeft: 8, marginVertical: 5 },
+  naming: { fontWeight: 'bold', marginVertical: 5 },
   description: {
-    fontSize: 15,
+    fontSize: 13,
   },
 });
 export default function OneBook({ item, navigate }) {

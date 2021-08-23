@@ -6,9 +6,11 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     marginBottom: 7,
-    backgroundColor: '#DFDCE5FF',
+    backgroundColor: '#ABD1C9FF',
     height: 35,
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#DFDCE5FF',
     marginHorizontal: 15,
     flexDirection: 'row',
   },
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
   },
   Picker: {
     flex: 3,
-    backgroundColor: '#DFDCE5FF',
+    backgroundColor: '#ABD1C9FF',
   },
 });
 
