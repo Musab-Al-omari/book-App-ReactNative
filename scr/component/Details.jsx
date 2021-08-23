@@ -4,10 +4,9 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function Details({ dataName, data }) {
   const styles = StyleSheet.create({
     spacing: {
-      marginHorizontal: 20,
       marginVertical: 10,
     },
-    naming: { fontWeight: 'bold', marginHorizontal: 20 },
+    naming: { fontWeight: 'bold' },
   });
   return (
     <>

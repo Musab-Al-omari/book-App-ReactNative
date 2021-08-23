@@ -28,21 +28,21 @@ const styles = StyleSheet.create({
     height: 250,
   },
   titles: {
+    textAlign: 'center',
     marginVertical: 15,
     marginHorizontal: 10,
     fontSize: 20,
     fontWeight: 'bold',
   },
-  naming: { fontWeight: 'bold', marginHorizontal: 20, marginVertical: 5 },
+  naming: { fontWeight: 'bold', marginVertical: 5 },
   description: {
     fontSize: 15,
   },
   spacing: {
-    marginHorizontal: 20,
     marginVertical: 10,
   },
   bottomView: {
-    backgroundColor: '#ABD1C9FF',
+    backgroundColor: '#DFDCE5FF',
     flexDirection: 'row',
     width: '100%',
     height: 50,
@@ -60,6 +60,13 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     textAlign: 'center',
+  },
+  dataContainer: {
+    backgroundColor: '#ABD1C9FF',
+    marginHorizontal: 15,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: '#DFDCE5FF',
   },
 });
 
@@ -88,42 +95,46 @@ export default function ItemScreen({ route }) {
         {/* ///////////////////// */}
         <Text style={styles.titles}>{item.volumeInfo.title} </Text>
         {/* ///////////////////// */}
-
-        <Text numberOfLines={1} style={styles.spacing}>
-          <Text style={styles.naming}>BookID:</Text>
-          <Text style={styles.description}>{item.id}</Text>
-        </Text>
-
-        {/* ///////////////////// */}
-        {item.volumeInfo.authors ? (
-          <Text numberOfLines={3} style={styles.spacing}>
-            <Text style={styles.naming}>The Author:</Text>
-            <Text style={styles.description}>
-              {item.volumeInfo.authors.join(' && ')}
-            </Text>
+        <View style={styles.dataContainer}>
+          <Text numberOfLines={1} style={styles.spacing}>
+            <Text style={styles.naming}>BookID:</Text>
+            <Text style={styles.description}>{item.id}</Text>
           </Text>
-        ) : (
-          <Text>
-            <Text style={styles.naming} style={styles.spacing}>
-              The Author:
+
+          {/* ///////////////////// */}
+          {item.volumeInfo.authors ? (
+            <Text numberOfLines={3} style={styles.spacing}>
+              <Text style={styles.naming}>The Author:</Text>
+              <Text style={styles.description}>
+                {item.volumeInfo.authors.join(' && ')}
+              </Text>
             </Text>
-            <Text numberOfLines={3} style={styles.description}>
-              unknown
+          ) : (
+            <Text>
+              <Text style={styles.naming} style={styles.spacing}>
+                The Author:
+              </Text>
+              <Text numberOfLines={3} style={styles.description}>
+                unknown
+              </Text>
             </Text>
-          </Text>
-        )}
-        {/* ///////////////////// */}
-        <Details dataName="publisher" data={item.volumeInfo.publisher} />
-        <Details
-          dataName="publishedDate"
-          data={item.volumeInfo.publishedDate}
-        />
-        <Details dataName="description" data={item.volumeInfo.description} />
-        <Details
-          dataName="averageRating"
-          data={item.volumeInfo.averageRating}
-        />
-        <Details dataName="ratingsCount" data={item.volumeInfo.ratingsCount} />
+          )}
+          {/* ///////////////////// */}
+          <Details dataName="publisher" data={item.volumeInfo.publisher} />
+          <Details
+            dataName="publishedDate"
+            data={item.volumeInfo.publishedDate}
+          />
+          <Details dataName="description" data={item.volumeInfo.description} />
+          <Details
+            dataName="averageRating"
+            data={item.volumeInfo.averageRating}
+          />
+          <Details
+            dataName="ratingsCount"
+            data={item.volumeInfo.ratingsCount}
+          />
+        </View>
       </ScrollView>
       {/* ///////////////////// */}
       <View style={styles.bottomView}>
