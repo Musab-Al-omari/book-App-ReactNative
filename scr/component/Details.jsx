@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 export default function Details({ dataName, data }) {
   const styles = StyleSheet.create({

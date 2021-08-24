@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Image,
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  TouchableOpacity,
-} from 'react-native';
+import { Image, View, Text, StyleSheet, ScrollView } from 'react-native';
 import Details from './component/Details';
 import Bottom from './component/Bottom';
+import { navigate } from '../App';
+import SaveDataBase from './component/SaveDataBase';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#97B3D0FF',
@@ -71,12 +65,10 @@ const styles = StyleSheet.create({
 });
 
 export default function ItemScreen({ route }) {
-  let item = route.params.item;
-  console.log(item.saleInfo.buyLink);
-
-  function onPress() {
-    return;
+  if (!route.params) {
+    return <Text>no data</Text>;
   }
+  let item = route.params.item;
 
   return (
     <View style={styles.container}>
@@ -139,7 +131,7 @@ export default function ItemScreen({ route }) {
       {/* ///////////////////// */}
       <View style={styles.bottomView}>
         <Bottom text="Buy" link={item.saleInfo.buyLink} />
-        <Bottom text="Save" link={''} />
+        <SaveDataBase text="Save" item={item} />
         <Bottom text="Preview" link={item.volumeInfo.previewLink} />
       </View>
     </View>

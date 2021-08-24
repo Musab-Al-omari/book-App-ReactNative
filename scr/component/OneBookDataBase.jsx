@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 });
-export default function OneBook({ item }) {
+export default function OneBookDataBase({ item }) {
   return (
     <>
       <View style={styles.mainContainer}>
@@ -38,8 +38,8 @@ export default function OneBook({ item }) {
           <Image
             style={styles.myImage}
             source={{
-              uri: item.volumeInfo.imageLinks
-                ? item.volumeInfo.imageLinks.smallThumbnail
+              uri: item.imgUrl
+                ? item.imgUrl
                 : 'https://www.generalcatalyst.com/wp-content/uploads/2017/10/featured-img-78-150x150.png',
             }}
           />
@@ -47,18 +47,18 @@ export default function OneBook({ item }) {
 
         <View style={styles.subContainer}>
           <Text numberOfLines={1} style={styles.titles}>
-            {item.volumeInfo.title}
+            {item.title}
           </Text>
           <Text numberOfLines={1} style={{ marginVertical: 5 }}>
             <Text style={styles.naming}>BookID:</Text>
             <Text style={styles.description}>{item.id}</Text>
           </Text>
 
-          {item.volumeInfo.authors ? (
+          {item.authors ? (
             <Text numberOfLines={1}>
               <Text style={styles.naming}>The Author:</Text>
               <Text style={styles.description}>
-                {item.volumeInfo.authors.join(' && ')}
+                {item.authors.join(' && ')}
               </Text>
             </Text>
           ) : (
@@ -70,9 +70,9 @@ export default function OneBook({ item }) {
             </Text>
           )}
 
-          {item.volumeInfo.averageRating ? (
+          {item.averageRating ? (
             <Text style={(styles.naming, { marginVertical: 5 })}>
-              Rating: {item.volumeInfo.averageRating}
+              Rating: {item.averageRating}
             </Text>
           ) : (
             <Text style={styles.naming}>Rating: no Rating</Text>

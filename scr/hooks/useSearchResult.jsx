@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Book from '../api/Bookapi';
-import dataBase from '../api/dataBase';
 import { Text, Alert } from 'react-native';
 export default () => {
   const [term, setTerm] = useState('');
@@ -32,7 +31,6 @@ export default () => {
     })
       .then((data) => {
         setResultArray(data.data.items);
-        console.log(data.data.items);
       })
       .catch((err) =>
         createTwoButtonAlert('try other terms ', "we didn't find any thing  ")
@@ -47,14 +45,10 @@ export default () => {
     })
       .then((data) => {
         setResultArray(data.data.items);
-        console.log(data.data.items);
       })
       .catch((err) =>
         createTwoButtonAlert('try other terms ', "we didn't find any thing  ")
       );
-    // dataBase.get('/bookApp').then((data) => {
-    //   console.log(data.data);
-    // });
   }, []);
   return [
     selectedCategory,
